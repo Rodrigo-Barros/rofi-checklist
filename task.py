@@ -4,7 +4,7 @@ from datetime import date
 from os import getenv
 
 lines=-1
-task_file = '%s/.local/bin/task/task' % getenv('HOME')
+task_file = '%s/.local/bin/rofi-checklist/tasks' % getenv('HOME')
 
 
 def do_task():
@@ -81,7 +81,7 @@ def update_date():
             lines[line_index] = 'timestamp atualizado em %s/%s/%s \n' % (now.day,now.month,now.year)
     temp_file.writelines(lines)
     temp_file.close()
-    system('cp /tmp/temp_task_file /home/rodrigo/.local/bin/task/task')
+    system('cp /tmp/temp_task_file %s' % task_file)
 
 def getLines():
     file = open(task_file,'r')
@@ -97,7 +97,7 @@ def reset_tasks():
             lines[line_index] = line.replace('+','-')
     temp_file.writelines(lines)
     temp_file.close()
-    system('cp /tmp/temp_task_file /home/rodrigo/.local/bin/task/task') 
+    system('cp /tmp/temp_task_file %s' % task_file) 
 
 
 parser = argparse.ArgumentParser()
